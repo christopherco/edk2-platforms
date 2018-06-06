@@ -90,12 +90,7 @@ ArmPlatformGetVirtualMemoryMap (
         return;
     }
 
-    if (FeaturePcdGet(PcdCacheEnable) == TRUE) {
-        cacheAttributes = ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK;
-    } else {
-        cacheAttributes = ARM_MEMORY_REGION_ATTRIBUTE_UNCACHED_UNBUFFERED;
-    }
-
+    cacheAttributes = ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK;
     DEBUG((EFI_D_VERBOSE, "cacheAttributes=0x%d\n", cacheAttributes));
 
     for (index = 0; index < MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS; index++) {

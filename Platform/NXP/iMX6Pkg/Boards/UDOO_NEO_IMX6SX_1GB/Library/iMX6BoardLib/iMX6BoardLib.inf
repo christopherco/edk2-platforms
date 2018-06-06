@@ -49,7 +49,6 @@
   Pmic.c
 
 [FeaturePcd]
-  gEmbeddedTokenSpaceGuid.PcdCacheEnable
   giMX6TokenSpaceGuid.PcdGpuEnable
 
 [FixedPcd]

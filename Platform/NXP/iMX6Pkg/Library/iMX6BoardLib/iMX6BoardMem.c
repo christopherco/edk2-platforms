@@ -49,12 +49,7 @@ ArmPlatformGetVirtualMemoryMap (
     return;
   }
 
-  if (FeaturePcdGet(PcdCacheEnable) == TRUE) {
-    CacheAttributes = DDR_ATTRIBUTES_CACHED;
-  } else {
-    CacheAttributes = DDR_ATTRIBUTES_UNCACHED;
-  }
-
+  CacheAttributes = DDR_ATTRIBUTES_CACHED;
   DEBUG((EFI_D_VERBOSE, "CacheAttributes=0x%d\n", CacheAttributes));
 
   // SOC registers region 1 (0x00100000 size 0x00C00000)

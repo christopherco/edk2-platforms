@@ -47,7 +47,6 @@
   iMX7BoardInit.c
 
 [FeaturePcd]
-  gEmbeddedTokenSpaceGuid.PcdCacheEnable
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFdBaseAddress

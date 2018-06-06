@@ -31,7 +31,6 @@
   LibMath|StdLib/LibC/Math/Math.inf
   LibSignal|StdLib/LibC/Signal/Signal.inf
   LibStdio|StdLib/LibC/Stdio/Stdio.inf
-  LibStdLib|StdLib/LibC/StdLib/StdLibUefiDriver.inf
   LibString|StdLib/LibC/String/String.inf
   LibTime|StdLib/LibC/Time/Time.inf
   LibUefi|StdLib/LibC/Uefi/UefiDriver.inf

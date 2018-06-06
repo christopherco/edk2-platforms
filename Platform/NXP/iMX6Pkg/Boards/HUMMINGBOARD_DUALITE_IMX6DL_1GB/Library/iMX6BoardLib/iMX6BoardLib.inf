@@ -50,7 +50,6 @@
   iMX6BoardInit.c
 
 [FeaturePcd]
-  gEmbeddedTokenSpaceGuid.PcdCacheEnable
   giMX6TokenSpaceGuid.PcdGpuEnable
 
 [FixedPcd]

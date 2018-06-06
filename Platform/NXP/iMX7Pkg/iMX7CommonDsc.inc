@@ -276,7 +276,7 @@
   IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
   DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
   ArmSoftFloatLib|ArmPkg/Library/ArmSoftFloatLib/ArmSoftFloatLib.inf
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptWithStdLib.inf
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
   OpteeClientApiLib|Platform/NXP/OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
 !endif
@@ -477,26 +477,7 @@
 [PcdsFeatureFlag.common]
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob|TRUE
 
-  #
-  # Control what commands are supported from the UI
-  # Turn these on and off to add features or save size
-  #
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedMacBoot|TRUE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedDirCmd|TRUE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedHobCmd|TRUE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedHwDebugCmd|TRUE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedPciDebugCmd|TRUE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedIoEnable|FALSE
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedScriptCmd|FALSE
-
-  gEmbeddedTokenSpaceGuid.PcdCacheEnable|TRUE
-
 [PcdsFixedAtBuild.common]
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedAutomaticBootCommand|""
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedDefaultTextColor|0x07
-
-  gEmbeddedTokenSpaceGuid.PcdEmbeddedMemVariableStoreSize|0x10000
-
   #
   # Optional feature to help prevent EFI memory map fragments
   # Turned on and off via: PcdPrePiProduceMemoryTypeInformationHob
@@ -895,4 +876,4 @@
 # standard library.
 #
 !include StdLib/StdLib.inc
-!include Platform/NXP/MsPkg/StdLibUefiDriver.inc
+
