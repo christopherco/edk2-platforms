@@ -971,9 +971,6 @@
   #Platform/NXP/MsPkg/Application/EdkTestSample/EdkTestSample.inf
   #Platform/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
 
-  Platform/NXP/MsPkg/Application/RpmbClientTest/RpmbClientTest.inf
-  Platform/NXP/MsPkg/Application/RpmbResetTest/RpmbResetTest.inf
-
 !if $(CONFIG_SECURE_UEFI) == TRUE
   Platform/NXP/OpteeClientPkg/Applicaiton/OpteeClientApiTest/OpteeClientApiTest.inf
   #SecurityPkg/Application/VariableAuthTestDxe/VariableAuthTestDxe.inf
