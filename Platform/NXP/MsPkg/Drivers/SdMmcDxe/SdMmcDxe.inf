@@ -29,8 +29,8 @@
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
-  MsPkg/MsPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
 
 [LibraryClasses]
   BaseLib

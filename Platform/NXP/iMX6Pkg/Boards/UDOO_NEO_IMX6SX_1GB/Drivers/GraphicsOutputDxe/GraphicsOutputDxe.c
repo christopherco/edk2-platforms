@@ -10,7 +10,7 @@
 ////
 
 //
-// Adapted from iMX6Pkg/Drivers/GOP and UdooNeoPkg/Drivers/GraphicsOutputDxe
+// Adapted from Platform/NXP/iMX6Pkg/Drivers/GOP and UdooNeoPkg/Drivers/GraphicsOutputDxe
 // TODO: Converge with iMXVideoDxe.c
 //
 

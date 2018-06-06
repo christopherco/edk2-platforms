@@ -30,7 +30,7 @@
 # Platform Description
 #
 ################################################################################
-!include iMX6Pkg/iMX6CommonDsc.inc
+!include Platform/NXP/iMX6Pkg/iMX6CommonDsc.inc
 
 [LibraryClasses.common]
   UdooNeoI2cLib|$(BOARD_DIR)/Library/UdooNeoI2cLib/UdooNeoI2cLib.inf

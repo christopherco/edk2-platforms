@@ -18,7 +18,7 @@
 
 
 [LibraryClasses.Common.UEFI_DRIVER]
-  ShellCEntryLib|MsPkg/Library/NullCEntryLib/NullCEntryLib.inf
+  ShellCEntryLib|Platform/NXP/MsPkg/Library/NullCEntryLib/NullCEntryLib.inf
   FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
   SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
 

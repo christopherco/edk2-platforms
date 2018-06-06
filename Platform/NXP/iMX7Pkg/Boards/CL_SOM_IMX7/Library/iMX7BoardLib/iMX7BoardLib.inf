@@ -27,9 +27,9 @@
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
-  iMX7Pkg/iMX7Pkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/iMX7Pkg/iMX7Pkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
 
 [LibraryClasses]
   IoLib

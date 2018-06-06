@@ -29,9 +29,9 @@
 [LibraryClasses]
 
 [Components]
-  MsPkg/Drivers/SdMmcDxe/SdMmcDxe.inf
-  MsPkg/Application/EdkTestSample/EdkTestSample.inf
-  MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
-  MsPkg/Application/RpmbClientTest/RpmbClientTest.inf
-  MsPkg/Application/RpmbResetTest/RpmbResetTest.inf
+  Platform/NXP/MsPkg/Drivers/SdMmcDxe/SdMmcDxe.inf
+  Platform/NXP/MsPkg/Application/EdkTestSample/EdkTestSample.inf
+  Platform/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
+  Platform/NXP/MsPkg/Application/RpmbClientTest/RpmbClientTest.inf
+  Platform/NXP/MsPkg/Application/RpmbResetTest/RpmbResetTest.inf
 

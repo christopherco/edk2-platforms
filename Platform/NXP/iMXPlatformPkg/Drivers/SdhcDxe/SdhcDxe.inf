@@ -26,8 +26,8 @@
 [Packages]
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
 
 [LibraryClasses]
   PcdLib

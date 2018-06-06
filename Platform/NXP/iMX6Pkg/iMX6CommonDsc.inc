@@ -27,10 +27,10 @@
   SUPPORTED_ARCHITECTURES        = ARM
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
-  BOARD_DIR                      = iMX6Pkg/Boards/$(BOARD_NAME)
+  BOARD_DIR                      = Platform/NXP/iMX6Pkg/Boards/$(BOARD_NAME)
   FLASH_DEFINITION               = $(BOARD_DIR)/$(BOARD_NAME).fdf
 
-!include iMX6Pkg/iMX6ConfigDsc.inc
+!include Platform/NXP/iMX6Pkg/iMX6ConfigDsc.inc
 
 ################################################################################
 #
@@ -82,10 +82,10 @@
   CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   UefiDecompressLib|MdePkg/Library/BaseUefiDecompressLib/BaseUefiDecompressLib.inf
-  RealTimeClockLib|iMXPlatformPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+  RealTimeClockLib|Platform/NXP/iMXPlatformPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   DefaultExceptionHandlerLib|ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf
   CpuExceptionHandlerLib|ArmPkg/Library/ArmExceptionLib/ArmExceptionLib.inf
-  TimerLib|iMX6Pkg/Library/TimerLib/TimerLib.inf
+  TimerLib|Platform/NXP/iMX6Pkg/Library/TimerLib/TimerLib.inf
 
   #
   # Memory
@@ -160,7 +160,7 @@
   # Serial, Console and Debugging
   #
   DebugAgentLib|MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf
-  SerialPortLib|iMXPlatformPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
+  SerialPortLib|Platform/NXP/iMXPlatformPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
 
   # Enable debug prints in both release and debug builds
@@ -170,7 +170,7 @@
   # The Standard IO window in the debugger will show load and unload events for symbols.
   #
 !if $(CONFIG_DUMP_SYMBOL_INFO) == TRUE
-  PeCoffExtraActionLib|MsPkg/Library/LauterbachPeCoffExtraActionLib/LauterbachPeCoffExtraActionLib.inf
+  PeCoffExtraActionLib|Platform/NXP/MsPkg/Library/LauterbachPeCoffExtraActionLib/LauterbachPeCoffExtraActionLib.inf
 !else
   PeCoffExtraActionLib|MdePkg/Library/BasePeCoffExtraActionLibNull/BasePeCoffExtraActionLibNull.inf
 !endif
@@ -178,7 +178,7 @@
   #
   # Display
   #
-  iMXDisplayLib|iMXPlatformPkg/Library/iMXDisplayLib/iMXDisplayLib.inf
+  iMXDisplayLib|Platform/NXP/iMXPlatformPkg/Library/iMXDisplayLib/iMXDisplayLib.inf
 
   #
   # Security
@@ -190,9 +190,9 @@
   #
   # iMX6 Specifics
   #
-  iMXIoMuxLib|iMX6Pkg/Library/iMX6IoMuxLib/iMX6IoMuxLib.inf
-  iMX6ClkPwrLib|iMX6Pkg/Library/iMX6ClkPwrLib/iMX6ClkPwrLib.inf
-  iMX6UsbPhyLib|iMX6Pkg/Library/iMX6UsbPhyLib/iMX6UsbPhyLib.inf
+  iMXIoMuxLib|Platform/NXP/iMX6Pkg/Library/iMX6IoMuxLib/iMX6IoMuxLib.inf
+  iMX6ClkPwrLib|Platform/NXP/iMX6Pkg/Library/iMX6ClkPwrLib/iMX6ClkPwrLib.inf
+  iMX6UsbPhyLib|Platform/NXP/iMX6Pkg/Library/iMX6UsbPhyLib/iMX6UsbPhyLib.inf
 
 [LibraryClasses.ARM]
   #
@@ -248,9 +248,9 @@
   IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
   OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
-  OpteeClientApiLib|OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
+  OpteeClientApiLib|Platform/NXP/OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
   HashLib|SecurityPkg/Library/HashLibBaseCryptoRouter/HashLibBaseCryptoRouterDxe.inf
-  Tpm2DeviceLibOptee|OpteeClientPkg/Library/Tpm2DeviceLibOptee/Tpm2DeviceLibOptee.inf
+  Tpm2DeviceLibOptee|Platform/NXP/OpteeClientPkg/Library/Tpm2DeviceLibOptee/Tpm2DeviceLibOptee.inf
   Tpm2CommandLib|SecurityPkg/Library/Tpm2CommandLib/Tpm2CommandLib.inf
 !endif
 
@@ -268,7 +268,7 @@
 !if $(CONFIG_OPTEE) == TRUE
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptWithStdLib.inf
   OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-  OpteeClientApiLib|OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
+  OpteeClientApiLib|Platform/NXP/OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
 !endif
 
 [LibraryClasses.common.UEFI_DRIVER]
@@ -288,7 +288,7 @@
   PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
 
 !if $(CONFIG_OPTEE) == TRUE
-  OpteeClientApiLib|OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
+  OpteeClientApiLib|Platform/NXP/OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
 !if $(CONFIG_MEASURED_BOOT) == TRUE
   TpmMeasurementLib|SecurityPkg/Library/DxeTpmMeasurementLib/DxeTpmMeasurementLib.inf
 !endif
@@ -834,7 +834,7 @@
       NULL|SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf
       NULL|SecurityPkg/Library/DxeTpm2MeasureBootLib/DxeTpm2MeasureBootLib.inf
   }
-  iMX6Pkg/Drivers/TimerDxe/TimerDxe.inf
+  Platform/NXP/iMX6Pkg/Drivers/TimerDxe/TimerDxe.inf
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
@@ -854,15 +854,15 @@
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   FatPkg/EnhancedFatDxe/Fat.inf
-  MsPkg/Drivers/SdMmcDxe/SdMmcDxe.inf
-  iMXPlatformPkg/Drivers/SdhcDxe/SdhcDxe.inf
+  Platform/NXP/MsPkg/Drivers/SdMmcDxe/SdMmcDxe.inf
+  Platform/NXP/iMXPlatformPkg/Drivers/SdhcDxe/SdhcDxe.inf
 
   #
   # USB Stack
   #
 !if $(CONFIG_USB) == TRUE
-  iMX6Pkg/Drivers/PciEmulation/PciEmulation.inf
-  iMX6Pkg/Drivers/EhciDxe/EhciDxeiMX6.inf
+  Platform/NXP/iMX6Pkg/Drivers/PciEmulation/PciEmulation.inf
+  Platform/NXP/iMX6Pkg/Drivers/EhciDxe/EhciDxeiMX6.inf
   MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
   MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
   MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
@@ -871,7 +871,7 @@
 !endif
 
   # PCIe support
-  iMX6Pkg/Drivers/PciExpress/iMX6PciExpress.inf
+  Platform/NXP/iMX6Pkg/Drivers/PciExpress/iMX6PciExpress.inf
 
   # Display Support
 !if $(CONFIG_HEADLESS) == FALSE
@@ -884,7 +884,7 @@
     #
     $(BOARD_DIR)/Drivers/GraphicsOutputDxe/GraphicsOutputDxe.inf
   !else
-    iMX6Pkg/Drivers/GOP/iMX6GOP.inf
+    Platform/NXP/iMX6Pkg/Drivers/GOP/iMX6GOP.inf
   !endif
 !endif
 
@@ -945,7 +945,7 @@
     <LibraryClasses>
       NULL|SecurityPkg/Library/HashInstanceLibSha1/HashInstanceLibSha1.inf
       NULL|SecurityPkg/Library/HashInstanceLibSha256/HashInstanceLibSha256.inf
-      Tpm2DeviceLib|OpteeClientPkg/Library/Tpm2DeviceLibOptee/Tpm2DeviceLibOptee.inf
+      Tpm2DeviceLib|Platform/NXP/OpteeClientPkg/Library/Tpm2DeviceLibOptee/Tpm2DeviceLibOptee.inf
 
     <PcdsFixedAtBuild>
       !if $(CONFIG_OPTEE_PROFILE) == TRUE
@@ -957,7 +957,7 @@
 !endif
 
 !if $(CONFIG_AUTH_VAR) == TRUE
-  OpteeClientPkg/Drivers/VariableAuthOpteeRuntimeDxe/VariableAuthOpteeRuntimeDxe.inf {
+  Platform/NXP/OpteeClientPkg/Drivers/VariableAuthOpteeRuntimeDxe/VariableAuthOpteeRuntimeDxe.inf {
     <PcdsFixedAtBuild>
       !if $(CONFIG_OPTEE_PROFILE) == TRUE
         gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
@@ -970,7 +970,7 @@
 !endif
 
 !if $(CONFIG_SECURE_BOOT_AUTO_CONFIG) == TRUE
-  MsPkg/Drivers/SecureBootAutoConfigDxe/SecureBootAutoConfigDxe.inf {
+  Platform/NXP/MsPkg/Drivers/SecureBootAutoConfigDxe/SecureBootAutoConfigDxe.inf {
     <PcdsFixedAtBuild>
       !if $(CONFIG_OPTEE_PROFILE) == TRUE
         gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
@@ -986,15 +986,15 @@
 
   # Applications
   MdeModulePkg/Application/HelloWorld/HelloWorld.inf
-  iMX6Pkg/Application/ImxClkPwr/ImxClkPwr.inf
-  #MsPkg/Application/EdkTestSample/EdkTestSample.inf
-  #MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
+  Platform/NXP/iMX6Pkg/Application/ImxClkPwr/ImxClkPwr.inf
+  #Platform/NXP/MsPkg/Application/EdkTestSample/EdkTestSample.inf
+  #Platform/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
 
-  MsPkg/Application/RpmbClientTest/RpmbClientTest.inf
-  MsPkg/Application/RpmbResetTest/RpmbResetTest.inf
+  Platform/NXP/MsPkg/Application/RpmbClientTest/RpmbClientTest.inf
+  Platform/NXP/MsPkg/Application/RpmbResetTest/RpmbResetTest.inf
 
 !if $(CONFIG_SECURE_UEFI) == TRUE
-  OpteeClientPkg/Applicaiton/OpteeClientApiTest/OpteeClientApiTest.inf
+  Platform/NXP/OpteeClientPkg/Applicaiton/OpteeClientApiTest/OpteeClientApiTest.inf
   #SecurityPkg/Application/VariableAuthTestDxe/VariableAuthTestDxe.inf
 !endif
 
@@ -1003,4 +1003,4 @@
 # standard library.
 #
 !include StdLib/StdLib.inc
-!include MsPkg/StdLibUefiDriver.inc
+!include Platform/NXP/MsPkg/StdLibUefiDriver.inc

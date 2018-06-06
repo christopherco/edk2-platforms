@@ -11,4 +11,4 @@
 #  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 #
 
-!include iMX6Pkg/iMX6CommonFdf.inc
+!include Platform/NXP/iMX6Pkg/iMX6CommonFdf.inc

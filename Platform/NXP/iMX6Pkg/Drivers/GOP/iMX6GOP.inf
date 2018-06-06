@@ -38,7 +38,7 @@
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  iMX6Pkg/iMX6Pkg.dec
+  Platform/NXP/iMX6Pkg/iMX6Pkg.dec
 
 [LibraryClasses]
   ArmLib

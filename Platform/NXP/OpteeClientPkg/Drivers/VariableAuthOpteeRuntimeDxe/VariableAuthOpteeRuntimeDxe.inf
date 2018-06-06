@@ -38,9 +38,9 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   SecurityPkg/SecurityPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
   StdLib/StdLib.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
 
 [LibraryClasses]
   MemoryAllocationLib

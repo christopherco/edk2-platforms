@@ -25,7 +25,7 @@
   StdLib/StdLib.dec
   ShellPkg/ShellPkg.dec
   MdePkg/MdePkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
 
 [LibraryClasses]
   LibC

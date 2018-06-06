@@ -30,5 +30,5 @@
 [LibraryClasses]
 
 [Components]
-  OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
+  Platform/NXP/OpteeClientPkg/Library/OpteeClientApiLib/OpteeClientApiLib.inf
 

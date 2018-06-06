@@ -30,8 +30,8 @@
 [Packages]
   MdePkg/MdePkg.dec
   SecurityPkg/SecurityPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
   StdLib/StdLib.dec
 
 [LibraryClasses]

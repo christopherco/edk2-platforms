@@ -32,7 +32,7 @@
     ArmPkg/ArmPkg.dec
     MdePkg/MdePkg.dec
     EmbeddedPkg/EmbeddedPkg.dec
-    iMX6Pkg/iMX6Pkg.dec
+    Platform/NXP/iMX6Pkg/iMX6Pkg.dec
     StdLib/StdLib.dec
 
 [LibraryClasses]

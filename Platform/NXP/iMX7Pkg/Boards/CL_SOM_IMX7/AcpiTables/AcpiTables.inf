@@ -44,8 +44,8 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  iMX7Pkg/iMX7Pkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/iMX7Pkg/iMX7Pkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
 
 [FixedPcd]
   gArmPlatformTokenSpaceGuid.PcdCoreCount

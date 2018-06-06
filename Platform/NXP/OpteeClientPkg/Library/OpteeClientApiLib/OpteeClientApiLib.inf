@@ -37,8 +37,8 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   ArmPkg/ArmPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
   StdLib/StdLib.dec
 
 [LibraryClasses]

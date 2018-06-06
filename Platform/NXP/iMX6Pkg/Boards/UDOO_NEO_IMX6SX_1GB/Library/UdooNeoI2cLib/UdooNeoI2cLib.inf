@@ -24,7 +24,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  iMX6Pkg/iMX6Pkg.dec
+  Platform/NXP/iMX6Pkg/iMX6Pkg.dec
 
 [LibraryClasses]
   DebugLib

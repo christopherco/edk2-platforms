@@ -28,10 +28,10 @@
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
-  iMX6Pkg/iMX6Pkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/iMX6Pkg/iMX6Pkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
 
 [LibraryClasses]
   IoLib

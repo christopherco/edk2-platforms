@@ -25,8 +25,8 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
-  iMX7Pkg/iMX7Pkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/iMX7Pkg/iMX7Pkg.dec
 
 [LibraryClasses]
   BaseMemoryLib

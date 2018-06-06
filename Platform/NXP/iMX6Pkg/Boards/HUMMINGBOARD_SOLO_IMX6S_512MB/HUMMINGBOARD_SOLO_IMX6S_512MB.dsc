@@ -31,7 +31,7 @@
 # Platform Description
 #
 ################################################################################
-!include iMX6Pkg/iMX6CommonDsc.inc
+!include Platform/NXP/iMX6Pkg/iMX6CommonDsc.inc
 
 ################################################################################
 #

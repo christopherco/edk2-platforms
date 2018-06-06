@@ -27,9 +27,9 @@
 [Packages]
   ShellPkg/ShellPkg.dec
   MdePkg/MdePkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
   StdLib/StdLib.dec
 
 [LibraryClasses]

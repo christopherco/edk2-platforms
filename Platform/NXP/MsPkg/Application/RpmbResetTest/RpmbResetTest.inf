@@ -26,8 +26,8 @@
   ShellPkg/ShellPkg.dec
   MdePkg/MdePkg.dec
   CryptoPkg/CryptoPkg.dec
-  OpteeClientPkg/OpteeClientPkg.dec
-  MsPkg/MsPkg.dec
+  Platform/NXP/OpteeClientPkg/OpteeClientPkg.dec
+  Platform/NXP/MsPkg/MsPkg.dec
 
 [LibraryClasses]
   LibC

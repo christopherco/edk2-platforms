@@ -42,9 +42,9 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  iMX6Pkg/iMX6Pkg.dec
+  Platform/NXP/iMX6Pkg/iMX6Pkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
   
 [FixedPcd]
   giMX6TokenSpaceGuid.PcdPcieHostConfigBase

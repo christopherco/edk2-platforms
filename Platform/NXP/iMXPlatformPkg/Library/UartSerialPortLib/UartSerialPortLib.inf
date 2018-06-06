@@ -34,7 +34,7 @@
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
-  iMXPlatformPkg/iMXPlatformPkg.dec
+  Platform/NXP/iMXPlatformPkg/iMXPlatformPkg.dec
 
 [FixedPcd]
   giMXPlatformTokenSpaceGuid.PcdSerialRegisterBase

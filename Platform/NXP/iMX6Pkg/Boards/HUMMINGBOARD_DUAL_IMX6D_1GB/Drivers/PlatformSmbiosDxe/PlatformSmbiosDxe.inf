@@ -37,7 +37,7 @@
   MdeModulePkg/MdeModulePkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  iMX6Pkg/iMX6Pkg.dec
+  Platform/NXP/iMX6Pkg/iMX6Pkg.dec
 
 [LibraryClasses]
   UefiBootServicesTableLib

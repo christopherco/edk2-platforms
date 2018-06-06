@@ -30,7 +30,7 @@
 ################################################################################
 [Includes.common]
   Include                        # Root include for the package
-  ../iMXPlatformPkg/Include      # Root include for the iMXPlatform package
+  ../Platform/NXP/iMXPlatformPkg/Include      # Root include for the iMXPlatform package
 
 [LibraryClasses]
 
