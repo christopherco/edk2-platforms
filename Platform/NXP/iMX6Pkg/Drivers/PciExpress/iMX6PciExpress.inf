@@ -1,0 +1,57 @@
+#
+# Copyright (C) Microsoft. All rights reserved
+#
+
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = iMX6PciExpress
+  FILE_GUID         = 5A7FB871-8A19-48D5-A268-441E79AAFD9E 
+  MODULE_TYPE       = DXE_DRIVER
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = PCIeInitialize
+
+[Sources.common]
+  iMX6PciExpress.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  ArmPkg/ArmPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  iMXPlatformPkg/iMXPlatformPkg.dec
+  iMX6Pkg/iMX6Pkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DxeServicesTableLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  IoLib
+  iMX6ClkPwrLib
+
+[Protocols]
+
+[Pcd]
+  giMX6TokenSpaceGuid.PcdPcieHostConfigBase
+  giMX6TokenSpaceGuid.PcdPcieDeviceConfigBase
+  giMX6TokenSpaceGuid.PcdPcieDeviceConfigSize
+  giMX6TokenSpaceGuid.PcdPcieIOBase
+  giMX6TokenSpaceGuid.PcdPcieIOSize
+  giMX6TokenSpaceGuid.PcdPciMemoryBase
+  giMX6TokenSpaceGuid.PcdPciMemorySize
+  giMX6TokenSpaceGuid.PcdPciPrefetchMemoryBase
+  giMX6TokenSpaceGuid.PcdPciPrefetchMemorySize
+  giMX6TokenSpaceGuid.PcdPcieResetGpio
+  giMX6TokenSpaceGuid.PcdPcieResetGpioBankNumber
+  giMX6TokenSpaceGuid.PcdPcieResetGpioIoNumber
+
+[FixedPcd]
+  giMXPlatformTokenSpaceGuid.PcdGpioBankMemoryRange
+
+[Depex]
+  gEfiMetronomeArchProtocolGuid AND 
+  gEfiCpuArchProtocolGuid
+  

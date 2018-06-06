@@ -1,0 +1,162 @@
+/*
+*
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*  This program and the accompanying materials
+*  are licensed and made available under the terms and conditions of the BSD License
+*  which accompanies this distribution.  The full text of the license may be found at
+*  http://opensource.org/licenses/bsd-license.php
+*
+*  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+*
+
+Module Name:
+
+    Mcfg.aslc
+
+Abstract:
+
+    Freescale i.MX6 ACPI Memory Mapped Configuration
+        Address Space table (MCFG). For exposing PCI express 
+        configuration address space.
+
+Environment:
+
+    Firmware UEFI ACPI 5.0.
+*/
+
+#include <Platform.h>
+#include <IndustryStandard/MemoryMappedConfigurationSpaceAccessTable.h>
+
+#include "iMX6.h"
+#include "../Drivers/PciExpress/iMX6PciExpress.h"
+
+#define EFI_ACPI_OEM_MCFG_REVISION 0x00000001
+
+//
+// Size in bytes a single bus consumes in ECAM space
+// Configuration size = 4K
+// Max device = 32
+// Max function = 8
+// Max bus size = 4K * 32 * 8
+//
+#define ECAM_BUS_ADDR_SIZE  (1 << 20)
+
+// 
+// Provide 2 differenct base PCI space address. The first list would represent
+// the host config space and the second list would be the device config space.
+// Windows is expected to be able to parse the information.
+//
+#define TOTAL_PCI_BASE_ADDRESS 2
+
+//
+// MCFG structure
+// PCI Firmware specification Table 4-2
+//
+#pragma pack(push, 1)
+
+typedef struct 
+{
+    EFI_ACPI_DESCRIPTION_HEADER Header;
+    UINT64                      Reserved;
+    EFI_ACPI_MEMORY_MAPPED_ENHANCED_CONFIGURATION_SPACE_BASE_ADDRESS_ALLOCATION_STRUCTURE   AllocationStructure[TOTAL_PCI_BASE_ADDRESS];
+} EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE;
+
+#pragma pack(pop)
+
+//
+// Multiple APIC Description Table
+//
+EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE Mcfg = 
+{
+    {
+        //
+        // Signature
+        //
+        EFI_ACPI_5_0_PCI_EXPRESS_MEMORY_MAPPED_CONFIGURATION_SPACE_BASE_ADDRESS_DESCRIPTION_TABLE_SIGNATURE,
+
+        //
+        // Length
+        //
+        sizeof (EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE),
+
+        //
+        // Revision
+        //
+        EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_TABLE_REVISION,
+
+        //
+        // Checksum will be updated at runtime
+        //
+        0x00,
+
+        //
+        // OEMID
+        //
+        EFI_ACPI_OEM_ID,
+
+        //
+        // OEM Table ID
+        //
+        EFI_ACPI_OEM_TABLE_ID,
+
+        //
+        // OEM Revision
+        //
+        EFI_ACPI_OEM_MCFG_REVISION,
+
+        //
+        // Creator ID
+        //
+        EFI_ACPI_CREATOR_ID,
+
+        //
+        // Creator revision
+        //
+        EFI_ACPI_CREATOR_REVISION,
+    },
+
+    //
+    // Reserved
+    //
+    0x00,
+
+    //
+    // EFI_ACPI_MEMORY_MAPPED_ENHANCED_CONFIGURATION_SPACE_BASE_ADDRESS_ALLOCATION_STRUCTURE
+    // Configuration space base address allocation
+    // structure [EFI_ACPI_ALLOCATION_STRUCTURE_COUNT]
+    // 
+
+    {
+        // PCIe Host
+        {
+            PCIE_HOST_CONFIG_BASE_REG,        // PCIE Host Config Base Address
+            0x00,                             // PciSegmentGroupNumber (_SEG)
+            0x00,                             // StartBusNumber
+            0x00,                             // EndBusNumber
+            0x00000000                        // Reserved
+        },
+
+        // PCIe Device
+        {
+            PCIE_DEVICE_CONFIG_BASE_REG - ECAM_BUS_ADDR_SIZE,  // BaseAddress
+            0x00,                              // PciSegmentGroupNumber (_SEG)
+            0x01,                              // StartBusNumber
+            0x01,                              // EndBusNumber
+            0x00000000                         // Reserved
+        }
+    }
+};
+
+//
+// Reference the table being generated to prevent the optimizer from removing
+// the data structure from the executable.
+//
+VOID*
+ReferenceAcpiTable (
+  VOID
+  )
+{
+    return (VOID*)&Mcfg;
+}
