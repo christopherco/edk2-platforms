@@ -37,7 +37,7 @@
   # Disable the USB stack by default. It currently has issues and need to be
   # taken care of
 !ifndef CONFIG_USB
-  DEFINE CONFIG_USB = TRUE
+  DEFINE CONFIG_USB = FALSE
 !endif
 
   # Disable the PCIexpress stack by default. Enable on demand.

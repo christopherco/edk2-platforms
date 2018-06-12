@@ -29,6 +29,11 @@
   SKUID_IDENTIFIER               = DEFAULT
   BOARD_DIR                      = Platform/NXP/iMX6Pkg/Boards/$(BOARD_NAME)
   FLASH_DEFINITION               = $(BOARD_DIR)/$(BOARD_NAME).fdf
+  # Disable the USB stack by default. It currently has issues and need to be
+  # taken care of
+!ifndef CONFIG_USB
+  DEFINE CONFIG_USB = FALSE
+!endif
 
 !include Platform/NXP/iMX6Pkg/iMX6ConfigDsc.inc
 
