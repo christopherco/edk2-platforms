@@ -22,7 +22,7 @@
 ################################################################################
 
 [Defines]
-  DEFINE BOARD_NAME       = SABRE_IMX7
+  DEFINE BOARD_NAME       = SABRE_IMX7D_1GB
   DEFINE IMX_FAMILY       = IMX7
   DEFINE IMX_CHIP_TYPE    = DUAL
   DEFINE CONFIG_USB       = FALSE
