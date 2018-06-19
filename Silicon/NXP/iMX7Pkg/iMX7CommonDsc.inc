@@ -27,8 +27,6 @@
   SUPPORTED_ARCHITECTURES        = ARM
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
-  BOARD_DIR                      = Silicon/NXP/iMX7Pkg/Boards/$(BOARD_NAME)
-  FLASH_DEFINITION               = $(BOARD_DIR)/$(BOARD_NAME).fdf
 
 !include Silicon/NXP/iMX7Pkg/iMX7ConfigDsc.inc
 
