@@ -862,7 +862,7 @@
   #Silicon/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
 
 !if $(CONFIG_SECURE_UEFI) == TRUE
-  Silicon/NXP/OpteeClientPkg/Applicaiton/OpteeClientApiTest/OpteeClientApiTest.inf
+  Silicon/NXP/OpteeClientPkg/Application/OpteeClientApiTest/OpteeClientApiTest.inf
   #SecurityPkg/Application/VariableAuthTestDxe/VariableAuthTestDxe.inf
 !endif
 
