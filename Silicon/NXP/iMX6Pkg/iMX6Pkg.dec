@@ -1,0 +1,101 @@
+#
+# i.MX6 package
+#
+#  Copyright (c) Microsoft Corporation. All rights reserved.
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution.  The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = iMX6Pkg
+  PACKAGE_GUID                   = 6eba6648-d853-4eb3-9761-528b82d5ab04
+  PACKAGE_VERSION                = 0.1
+
+################################################################################
+#
+# Include Section - list of Include Paths that are provided by this package.
+#                   Comments are used for Keywords and Module Types.
+#
+# Supported Module Types:
+#  BASE SEC PEI_CORE PEIM DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION
+#
+################################################################################
+[Includes.common]
+  Include                        # Root include for the package
+  Silicon/NXP/iMXPlatformPkg/Include      # Root include for the iMXPlatform package
+
+[LibraryClasses]
+  iMXIoMuxLib|Silicon/NXP/iMX6Pkg/Include/iMXIoMux.h
+  iMX6ClkPwrLib|Silicon/NXP/iMX6Pkg/Include/iMX6ClkPwr.h
+  iMX6UsbPhyLib|Silicon/NXP/iMX6Pkg/Include/iMX6UsbPhy.h
+
+[Protocols.common]
+  gEfiSdhcProtocolGuid = { 0x46055b0f, 0x992a, 0x4ad7, { 0x8f, 0x81, 0x14, 0x81, 0x86, 0xff, 0xdf, 0x72 } }
+
+[Guids.common]
+  giMX6TokenSpaceGuid    =  { 0x24b09abe, 0x4e47, 0x481c, { 0xa9, 0xad, 0xce, 0xf1, 0x2c, 0x39, 0x23, 0x27} }
+
+[PcdsFixedAtBuild.common]
+  #
+  # Frame buffer is set to the first addressable memory on the i.MX6
+  # Sabre board for convenience.
+  # Keep in mind that this chunk of memory is the only one that remains fixed
+  # through the various boot stages (primary boot->UEFI->Windows.
+  #
+  giMX6TokenSpaceGuid.PcdFrameBufferBase|0x10000000|UINT32|0x0000000A
+  giMX6TokenSpaceGuid.PcdFrameBufferSize|0x00800000|UINT32|0x0000000B
+
+  #
+  # Performance counter
+  #
+  gEmbeddedTokenSpaceGuid.PcdEmbeddedFdPerformanceCounterFrequencyInHz|1000000|UINT32 |0xC
+  gEmbeddedTokenSpaceGuid.PcdEmbeddedFdPerformanceCounterPeriodInNanoseconds|1000|UINT32 |0xD
+
+  #
+  # USB EHCI Controller
+  #
+  giMX6TokenSpaceGuid.PcdEHCIBase|0x02184000|UINT32|0xE
+  giMX6TokenSpaceGuid.PcdEHCILength|0x4000|UINT32|0xF
+  giMX6TokenSpaceGuid.PcdIsUsbPortOTG|TRUE|BOOLEAN|0x10
+  giMX6TokenSpaceGuid.PcdUSBOTGBase|0x02184000|UINT32|0x11
+
+  #
+  # ARM System Reset Controller (SRC)
+  #
+  giMX6TokenSpaceGuid.PcdSrcBase|0x020D8000|UINT32|0x2B
+
+  #
+  # PCIE
+  #
+  # PCI Host config space is fixed at 0x01FFC000. The memory range from
+  # 0x01000000 - 0x01FFBFFF is assigned for PCIe. The memory layout defined
+  # by the boot loader is as below
+  #
+  # PCIe Device Config Space : 0x01F00000 - 0x01F80000
+  # PCIe IO (unsupported) : 0x01100000 - 0x011FFFFF
+  # PCIe Memory : 0x01200000 - 0x012FFFFF
+  #
+  giMX6TokenSpaceGuid.PcdPcieHostConfigBase|0x01FFC000|UINT32|0x2C
+  giMX6TokenSpaceGuid.PcdPcieDeviceConfigBase|0x01F00000|UINT32|0x2D
+  giMX6TokenSpaceGuid.PcdPcieDeviceConfigSize|0x00080000|UINT32|0x2E
+  giMX6TokenSpaceGuid.PcdPcieIOBase|0x00000000|UINT32|0x2F
+  giMX6TokenSpaceGuid.PcdPcieIOSize|0x00000000|UINT32|0x30
+  giMX6TokenSpaceGuid.PcdPciMemoryBase|0x01100000|UINT32|0x31
+  giMX6TokenSpaceGuid.PcdPciMemorySize|0x00D00000|UINT32|0x32
+  giMX6TokenSpaceGuid.PcdPciPrefetchMemoryBase|0x00000000|UINT32|0x33
+  giMX6TokenSpaceGuid.PcdPciPrefetchMemorySize|0x00000000|UINT32|0x34
+  giMX6TokenSpaceGuid.PcdPcieResetGpio|FALSE|BOOLEAN|0x35
+  giMX6TokenSpaceGuid.PcdPcieResetGpioBankNumber|0|UINT32|0x36
+  giMX6TokenSpaceGuid.PcdPcieResetGpioIoNumber|0|UINT32|0x37
+
+[PcdsFeatureFlag.common]
+  giMX6TokenSpaceGuid.PcdGpuEnable|FALSE|BOOLEAN|0x00001000
+  giMX6TokenSpaceGuid.PcdLvdsEnable|FALSE|BOOLEAN|0x00001001
