@@ -858,8 +858,6 @@
   # Applications
   MdeModulePkg/Application/HelloWorld/HelloWorld.inf
 #  Silicon/NXP/iMX7Pkg/Application/ImxClkPwr/ImxClkPwr.inf
-  #Silicon/NXP/MsPkg/Application/EdkTestSample/EdkTestSample.inf
-  #Silicon/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
 
 !if $(CONFIG_SECURE_UEFI) == TRUE
   Silicon/NXP/OpteeClientPkg/Application/OpteeClientApiTest/OpteeClientApiTest.inf

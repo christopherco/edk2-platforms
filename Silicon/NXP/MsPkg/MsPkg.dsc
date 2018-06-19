@@ -30,6 +30,3 @@
 
 [Components]
   Silicon/NXP/MsPkg/Drivers/SdMmcDxe/SdMmcDxe.inf
-  Silicon/NXP/MsPkg/Application/EdkTestSample/EdkTestSample.inf
-  Silicon/NXP/MsPkg/Application/EdkNoStdTestSample/EdkNoStdTestSample.inf
-
