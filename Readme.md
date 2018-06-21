@@ -171,10 +171,10 @@ $ git clone https://git.linaro.org/uefi/uefi-tools.git
 $ ./uefi-tools/edk2-build.sh juno
 ...
 ------------------------------------------------------------
-                         aarch64 Juno (AARCH64) RELEASE	pass
+                         aarch64 Juno (AARCH64) RELEASE pass
 ------------------------------------------------------------
-pass	1
-fail	0
+pass    1
+fail    0
 ```
 The build finishes with a summary of which platforms/targets were built, which
 succeeded and which failed (and the total number of either).
@@ -190,8 +190,168 @@ $ ./uefi-tools/edk2-build.sh -b DEBUG -b RELEASE
 
 # How To Build (Windows Environment)
 
-(I genuinely have no idea. Please help!)
+These instructions will be a summary of the
+[Windows Systems wiki entry](https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems).
+The wiki entry is targeted towards using the Visual Studio compiler.  The
+instructions below will have some extra steps if you are cross-compiling with GCC.
 
+## Prerequisites
+You will need Git for Windows and Visual Studio installed to build EDK2 from source.
+If you wish to build the build tools, you will also need Python 2.7 for Windows
+and CxFreeze.
+
+## If cross compiling
+If building EDK2 for a different architecture than the build machine, you need to
+obtain an appropriate cross-compiler. X64 (x86_64) compilers also support IA32,
+but the reverse may not always be true.
+
+Target architecture | Cross compilation prefix
+--------------------|-------------------------
+ARM                 | arm-eabi-
+
+### GCC
+Linaro provides a Windows-compatible GCC toolchain for [arm-eabi](https://releases.linaro.org/components/toolchain/binaries/latest/arm-eabi/)
+compiled to run on x86_64/i686 Windows.  Select the i686 mingw32 variant.
+
+To use the GCC toolchain, you will also need a Windows-compatible GCC environment
+like [MinGW](http://mingw.org/).  Specifically you will need the GNU make tool.
+
+## Obtaining source code
+1. Create a new folder (directory) on your local development machine
+   for use as your workspace. This example uses `C:\git\tianocore`, modify as
+   appropriate for your needs.
+
+1. In a Windows command prompt:
+   ```
+   > set WORKSPACE=C:\git\tianocore
+   > mkdir %WORKSPACE%
+   > cd %WORKSPACE%
+   ```
+
+1. Into that folder, clone:
+   1. [edk2](https://github.com/tianocore/edk2)
+   1. [edk2-platforms](https://github.com/tianocore/edk2-platforms)
+   1. [edk2-non-osi](https://github.com/tianocore/edk2-non-osi) (if building
+      platforms that need it)
+   ```
+   > git clone https://github.com/tianocore/edk2.git
+   ...
+   > git clone https://github.com/tianocore/edk2-platforms.git
+   ...
+   > git clone https://github.com/tianocore/edk2-non-osi.git
+   ```
+
+1. Clone submodules
+    ```
+    > pushd edk2
+    > git submodule update --init --recursive
+    > popd
+    ```
+
+1. Set up a **PACKAGES_PATH** to point to the locations of these three
+   repositories:
+
+   `> set PACKAGES_PATH=%WORKSPACE%/edk2;%WORKSPACE%/edk2-platforms;%WORKSPACE%/edk2-non-osi`
+
+### If cross-compiling with GCC
+1. Download [MinGW](http://mingw.org/) and get the **make** executable.  Copy
+make.exe and any library dependencies to a folder in your workspace.
+    ```
+    > mkdir %WORKSPACE%\MinGW
+    > pushd %WORKSPACE%\MinGW
+    ... copy make.exe and any library dependencies into MinGW folder ...
+    > popd
+    ```
+(Note sometimes the MinGW installer prepends **mingw32-** before **make.exe**.
+You should rename the exe to make before proceeding.)
+
+1. Download your GCC cross-compiler and place it in your workspace
+    ```
+    > mkdir %WORKSPACE%\Toolchains
+    > pushd %WORKSPACE%\Toolchains
+    ... copy GCC cross-compiler into Toolchains folder ...
+    > popd
+    ```
+
+## Manual building
+1. Set up the build environment (this will modify your environment variables)
+
+   `> edk2\edk2setup.bat`
+
+   (This step _depends_ on **WORKSPACE** being set as per above.)
+
+1. Get the BaseTools.  You can either build them from source or fetch prebuilt binaries.
+    * To build from source, follow the Windows instructions found [here](https://github.com/tianocore/edk2/blob/master/BaseTools/BuildNotes.txt).
+    * To use prebuilt binaries, clone
+    [edk2-BaseTools-win32](https://github.com/tianocore/edk2-BaseTools-win32)
+    and set **EDK_TOOLS_DIR** to point to this location.
+    ```
+    > git clone https://github.com/tianocore/edk2-BaseTools-win32.git
+    ...
+    > set EDK_TOOLS_DIR=%WORKSPACE%/edk2-BaseTools-win32
+    ```
+
+1. Install the ASL compiler (if necessary) for your platform. Follow
+the instructions found [here](https://github.com/tianocore/tianocore.github.io/wiki/Asl-Setup).
+
+### If cross-compiling with GCC
+1. Set **PATH** to include the location of your MinGW make executable and cross-compiling toolchain bin folder.
+
+    `> set PATH=%WORKSPACE%\MinGW;%WORKSPACE%\Toolchains\<Cross Compiler>\bin;%PATH%`
+
+### Build options
+There are a number of options that can (or must) be specified at the point of
+building. Their default values are set in `edk2\Conf\target.txt`. If we are
+working only on a single platform, it makes sense to just update this file.
+
+target.txt option | command line | Description
+------------------|--------------|------------
+ACTIVE_PLATFORM   | `-p`         | Description file (.dsc) of platform.
+TARGET            | `-b`         | One of DEBUG, RELEASE or NOOPT.
+TARGET_ARCH       | `-a`         | Architecture to build for.
+TOOL_CHAIN_TAG    | `-t`         | Toolchain profile to use for building.
+
+There is also MAX_CONCURRENT_THREAD_NUMBER (`-n`), roughly equivalent to
+`make -j`.
+
+When specified on command line, `-b` can be repeated multiple times in order to
+build multiple targets sequentially.
+
+After a successful build, the resulting images can be found in
+`%WORKSPACE%\Build\{Platform Name}\{TARGET}_{TOOL_CHAIN_TAG}\FV`.
+
+### Build a platform
+The main build process _can_ run in parallel - so figure out how many threads we
+have available.
+
+```
+> echo %NUMBER_OF_PROCESSORS%
+8
+```
+OK, so we have 8 CPUs - let's tell the build to use a little more than that:
+```
+> set /A NUM_CPUS=%NUMBER_OF_PROCESSORS%+2
+```
+For the toolchain tag, select a toolchain that is compatible with building in a Windows Environment. Search for 'Supported Tool Chains' in tools_def.txt to see the valid options for `TOOL_CHAIN_TAG`.  If using Visual Studio Compiler, consult the
+[VS Toolchain Matrix](https://github.com/tianocore/tianocore.github.io/wiki/Windows-systems-ToolChain-Matrix)
+to determine the proper VS `TOOL_CHAIN_TAG`.
+
+```
+> build -n %NUM_CPUS% -a ARM -t GCC5 -p Platform/NXP/SABRESD_IMX6Q_1GB/SABRESD_IMX6Q_1GB.dsc
+```
+
+(Note that the description file gets resolved by the build command through
+searching in all locations specified in **PACKAGES_PATH**.)
+
+#### If cross-compiling
+When cross-compiling, we additionally need to inform the
+build command which toolchain to use. We do this by setting the environment
+variable `{TOOL_CHAIN_TAG}_{TARGET_ARCH}_PREFIX` - in the case above,
+**GCC5_ARM_PREFIX**.
+
+So, referring to the cross compiler toolchain table above, we should prepend the `build` command line with
+
+    > set GCC5_ARM_PREFIX=arm-eabi-
 
 # Supported Platforms
 
